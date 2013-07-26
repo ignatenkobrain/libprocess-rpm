@@ -1,4 +1,4 @@
-%define commit e93ab811055dd459a8eb53938a920dc05819219d
+%define commit d47b962a614ba3a86d7a4a428f2debfc02d5690b
 %define shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libprocess
@@ -30,15 +30,13 @@ BuildRequires:  stout-devel
 %description
 Library that provides an actor style message-passing programming model (in C++).
 
-
 %package devel
-Summary: Headers for Condor's classified advertisement language
+Summary: Header files for libprocess development
 Group: Development/Libraries
 Requires: %name = %version-%release
 
 %description devel
-Devel libraries for such and such
-
+Header files for libprocess, a library that provides an actor style message-passing programming model (in C++)
 
 %prep
 %setup -qn %{name}-%{commit}
@@ -49,14 +47,14 @@ Devel libraries for such and such
 make %{?_smp_mflags}
 
 %check
-# TODO: Needs revisit for cleaning.
+# TODO: require gmock update to 1.6.0 (https://bugzilla.redhat.com/show_bug.cgi?id=988991)
 # make check
 
 %install
 rm -rf %{buildroot}
 %make_install 
 
-#remove the static library elements?  I'm still debating.
+# Remove the static library elements...
 rm -f %{buildroot}/%{_libdir}/libprocess.a
 rm -f %{buildroot}/%{_libdir}/libprocess.la
 
@@ -69,8 +67,7 @@ rm -f %{buildroot}/%{_libdir}/libprocess.la
 
 %files devel
 %defattr(-,root,root,-)
-# this needs to be changed to {name}. 
-%{_includedir}/process/
+%{_includedir}/%{name}/
 %doc LICENSE README
 
 %changelog
