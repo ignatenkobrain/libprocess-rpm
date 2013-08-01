@@ -1,9 +1,9 @@
-%global commit      d47b962a614ba3a86d7a4a428f2debfc02d5690b
+%global commit      b29bd67b2da7e7f73ce692fdfa65580238ec7e66
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libprocess
 Version:        0.0.1
-Release:        4.%{shortcommit}%{?dist}
+Release:        5.%{shortcommit}%{?dist}
 Summary:        Library that provides an actor style message-passing programming model (in C++)
 License:        ASL 2.0
 URL:            https://github.com/3rdparty/libprocess
@@ -31,15 +31,15 @@ BuildRequires:  stout-devel
 Library that provides an actor style message-passing programming model (in C++).
 
 %package devel
-Summary: Header files for libprocess development
-Group: Development/Libraries
-Requires: %name = %version-%release
+Summary:        Header files for libprocess development
+Group:          Development/Libraries
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files for libprocess, a library that provides an actor style message-passing programming model (in C++)
 
 %prep
-%setup -qn %{name}-%{commit}
+%setup -q -n %{name}-%{commit}
 
 %build
 ./bootstrap
@@ -55,8 +55,6 @@ make check
 # Remove static libraries and libtool files
 rm -f %{buildroot}%{_libdir}/libprocess.a
 rm -f %{buildroot}%{_libdir}/libprocess.la
-# Rename folder in include  dir
-mv %{buildroot}%{_includedir}/process %{buildroot}%{_includedir}/libprocess
 
 %files
 %{_libdir}/libprocess.s*
@@ -68,6 +66,10 @@ mv %{buildroot}%{_includedir}/process %{buildroot}%{_includedir}/libprocess
 %doc LICENSE README
 
 %changelog
+* Thu Aug  1 2013 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.0.1-5.b29bd67
+- Update to latest (with fix problems in http-parser)
+- Some fixes in spec
+
 * Wed Jul 31 2013 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.0.1-4.84ce2f3
 - Add gmock-devel BR
 - Fix files in devel
