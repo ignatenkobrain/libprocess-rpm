@@ -1,4 +1,4 @@
-%global commit      b29bd67b2da7e7f73ce692fdfa65580238ec7e66
+%global commit      35f872fadcfce0b1327627b42c08f88620284ad7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libprocess
