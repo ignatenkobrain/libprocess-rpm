@@ -3,7 +3,7 @@
 
 Name:           libprocess
 Version:        0.0.1
-Release:        5.%{shortcommit}%{?dist}
+Release:        6.%{shortcommit}%{?dist}
 Summary:        Library that provides an actor style message-passing programming model (in C++)
 License:        ASL 2.0
 URL:            https://github.com/3rdparty/libprocess
@@ -66,6 +66,9 @@ rm -f %{buildroot}%{_libdir}/libprocess.la
 %doc LICENSE README
 
 %changelog
+* Tue Aug 6 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-6.35f872f
+- Update to latest with merge in from upstream.
+
 * Thu Aug  1 2013 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.0.1-5.b29bd67
 - Update to latest (with fix problems in http-parser)
 - Some fixes in spec
