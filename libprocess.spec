@@ -13,8 +13,6 @@ Group:          System Environment/Libraries
 # Temporary our fork
 Source0:        https://github.com/ignatenkobrain/libprocess/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
 
-BuildRequires:  automake
-BuildRequires:  gcc-c++
 BuildRequires:  libtool
 BuildRequires:  zlib-devel
 BuildRequires:  http-parser-devel
@@ -36,7 +34,7 @@ Group:          Development/Libraries
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
-Header files for libprocess, a library that provides an actor style message-passing programming model (in C++)
+Header files for libprocess.
 
 %prep
 %setup -q -n %{name}-%{commit}
@@ -63,7 +61,6 @@ rm -f %{buildroot}%{_libdir}/libprocess.la
 
 %files devel
 %{_includedir}/libprocess/
-%doc LICENSE README
 
 %changelog
 * Tue Aug 6 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-6.35f872f
@@ -86,5 +83,5 @@ rm -f %{buildroot}%{_libdir}/libprocess.la
 - Enabled all BuildRequires
 - Dropped most all bundled
 
-* Tue Jul 23 2013 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.1.0-1.f0d47da
+* Tue Jul 23 2013 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.0.1-1.f0d47da
 - Initial release
