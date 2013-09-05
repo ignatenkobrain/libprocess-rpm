@@ -1,16 +1,14 @@
-%global commit      35f872fadcfce0b1327627b42c08f88620284ad7
+%global commit      c2373faebe103fa9be1631da997dc021d12fe4cf
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libprocess
 Version:        0.0.1
-Release:        6.%{shortcommit}%{?dist}
+Release:        7.%{shortcommit}%{?dist}
 Summary:        Library that provides an actor style message-passing programming model (in C++)
 License:        ASL 2.0
 URL:            https://github.com/3rdparty/libprocess
 Group:          System Environment/Libraries
 
-#Source0:        https://github.com/3rdparty/libprocess/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
-# Temporary our fork
 Source0:        https://github.com/ignatenkobrain/libprocess/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
 
 BuildRequires:  libtool
@@ -63,6 +61,12 @@ rm -f %{buildroot}%{_libdir}/libprocess.la
 %{_includedir}/libprocess/
 
 %changelog
+* Wed Sep 4 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-8.56080c4
+- Update from upstream 
+
+* Fri Aug 16 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-7.ca0718f 
+- Merge out from upstream mesos repo
+
 * Tue Aug 6 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-6.35f872f
 - Update to latest with merge in from upstream.
 
