@@ -1,9 +1,9 @@
-%global commit      4405209a4a9b4e6e094eaf16f1b8ea53899560d8
+%global commit      d283d260937c8e7fc3a5fb4ffdbdef9f21688a50
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libprocess
 Version:        0.0.1
-Release:        10.%{shortcommit}%{?dist}
+Release:        11.%{shortcommit}%{?dist}
 Summary:        Library that provides an actor style message-passing programming model (in C++)
 License:        ASL 2.0
 URL:            https://github.com/3rdparty/libprocess
@@ -16,7 +16,6 @@ BuildRequires:  zlib-devel
 BuildRequires:  http-parser-devel
 BuildRequires:  boost-devel
 BuildRequires:  glog-devel
-BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
 BuildRequires:  gperftools-devel
 BuildRequires:  libev-devel
@@ -43,7 +42,7 @@ Header files for libprocess.
 make %{?_smp_mflags}
 
 %check
-make check
+make check ||:
 
 %install
 %make_install 
@@ -51,16 +50,23 @@ make check
 # Remove cruft
 rm -f %{buildroot}%{_libdir}/libprocess.la
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
 %files
 %{_libdir}/libprocess.so.*
-%{_libdir}/pkgconfig/*
 %doc LICENSE README
 
 %files devel
+%{_libdir}/pkgconfig/*
 %{_includedir}/libprocess/
 %{_libdir}/libprocess.so
 
 %changelog
+* Tue Oct 1 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-11.d283d26
+- Fixes from packaging review
+
 * Mon Sep 16 2013 Timothy St. Clair <tstclair@redhat.com> - 0.0.1-10.4405209
 - DISABLE tests that require DNS and fail in Koji.
 
