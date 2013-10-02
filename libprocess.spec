@@ -45,6 +45,7 @@ make %{?_smp_mflags}
 make check ||:
 
 %install
+rm -rf %{buildroot}
 %make_install 
 
 # Remove cruft
